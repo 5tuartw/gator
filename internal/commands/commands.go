@@ -22,6 +22,7 @@ type Command struct {
 	Arguments []string
 }
 
+// function to handle commands which require a user (current logged in user)
 func MiddlewareLoggedIn(handler func(s *State, cmd Command, user database.User) error) func(*State, Command) error {
 	return func(s *State, cmd Command) error {
 		user, err := s.Db.GetUser(context.Background(), s.Config.CurrentUsername)
@@ -32,6 +33,7 @@ func MiddlewareLoggedIn(handler func(s *State, cmd Command, user database.User) 
 	}
 }
 
+// function to log in a new user from the users table
 func HandlerLogin(s *State, c Command) error {
 	if len(c.Arguments) != 1 {
 		return fmt.Errorf("login requires exactly one argument")
@@ -56,6 +58,7 @@ func HandlerLogin(s *State, c Command) error {
 	return nil
 }
 
+// function to register a new user in the users table
 func RegisterHandler(s *State, c Command) error {
 	if len(c.Arguments) < 1 {
 		return fmt.Errorf("register requires a name argument")
@@ -87,6 +90,7 @@ func RegisterHandler(s *State, c Command) error {
 	return nil
 }
 
+// function to reset the users database
 func Reset(s *State, c Command) error {
 	if len(c.Arguments) > 0 {
 		return fmt.Errorf("reset does not take any arguments")
@@ -101,6 +105,7 @@ func Reset(s *State, c Command) error {
 	return nil
 }
 
+// function to list the current users
 func Users(s *State, c Command) error {
 	if len(c.Arguments) > 0 {
 		return fmt.Errorf("users does not take any arguments")

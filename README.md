@@ -53,7 +53,7 @@ Create a configuration file config.json in the root directory with the following
     
 Replace username and password with your actual PostrgreSQL username and password
 
-## Usage
+## Usage ##
 Register a new user
 ```Go
 go run . register <username>
@@ -62,8 +62,36 @@ Login as a user
 ```Go
 go run . login <username>
 ```
-Browse user posts
+List current users
+```Go
+go run . users
 ```
+Reset users list
+```Go
+go run . reset
+```
+Add feed to feeds table
+```Go
+go run . addfeed <name-no-spaces> <url>
+```
+List currently added feeds
+```Go
+go run . feeds
+```
+Follow/unfollow a feed (current user)
+```Go
+go run . [follow/unfollow] <feedname>
+```
+Show current users feeds
+```Go
+go run . following
+```
+Aggregate feeds currently in the feeds table (run in separate terminal)
+```Go
+go run . agg
+```
+Browse posts on feeds for current user
+```Go
 go run . browse [--limit <number>]
 ```
 ## Acknowledgements
