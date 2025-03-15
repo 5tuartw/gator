@@ -13,8 +13,7 @@ import (
 	"github.com/5tuartw/gator/internal/database"
 )
 
-//psql "postgres://postgres:postgres@localhost:5432/gator"
-//goose postgres "postgres://postgres:postgres@localhost:5432/gator" up
+
 
 func main() {
 	cfg, err := Config.Read()
